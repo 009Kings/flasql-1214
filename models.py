@@ -25,10 +25,10 @@ class User(db.Model):
   
   def to_dict(self):
     return {
-      id: self.id,
-      name: self.name,
-      email: self.email,
-      bio: self.bio
+      "id": self.id,
+      "name": self.name,
+      "email": self.email,
+      "bio": self.bio
     }
 
 post_tags = db.Table(

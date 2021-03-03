@@ -9,16 +9,17 @@ def home():
 def user_index_create():
   if request.method == "GET":
     # get all users
-    return jsonify([])
+    users = User.query.all()
+    print(type(users[0]))
+    results = [user.to_dict() for user in users]
+    return jsonify(results)
   if request.method == "POST":
     # create a user
-    # print(request.json)
-    # print(request.get_json())
     new_user = User(name=request.form["name"], email=request.form["email"], bio=request.form["bio"])
     db.session.add(new_user)
     db.session.commit()
     print(new_user)
-    return jsonify(new_user)
+    return jsonify(new_user.to_dict())
 
 if __name__ == "__main__":
   app.run()
